@@ -1,0 +1,10 @@
+#!/bin/bash
+
+CONTAINER_NAME="app"
+
+if [ $(docker ps -q -f name=$CONTAINER_NAME) ]; then
+  docker exec "$CONTAINER_NAME" "$@"
+else
+  echo "Error: Container '$CONTAINER_NAME' is not running."
+  exit 1
+fi

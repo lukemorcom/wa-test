@@ -4,6 +4,16 @@ CONTAINER_NAME="app"
 
 if [ $(docker ps -q -f name=$CONTAINER_NAME) ]; then
   docker exec "$CONTAINER_NAME" "$@"
+
+  case "$1" in
+    art)
+        shift
+        docker exec -it "$CONTAINER_NAME" php artisan "$@"
+        ;;
+    *)
+        docker exec -it "$CONTAINER_NAME" "$@"
+        ;;
+esac
 else
   echo "Error: Container '$CONTAINER_NAME' is not running."
   exit 1

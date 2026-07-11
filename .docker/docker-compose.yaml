@@ -6,10 +6,23 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
+    command: php artisan serve --host=0.0.0.0 --port=8000
     volumes:
-      - .:/var/www/html
+      - ../laravel:/var/www/html
     depends_on:
       - mysql
+
+  queue:
+    container_name: queue
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    command: php artisan queue:work --verbose --tries=3 --timeout=90
+    volumes:
+      - ../laravel:/var/www/html
+    depends_on:
+      - mysql
+      - redis
 
   mysql:
     container_name: mysql
@@ -23,6 +36,12 @@ services:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+
+  redis:
+    container_name: redis
+    image: redis:8.8.0-alpine
+    ports:
+      - "6379:6379"
 
 volumes:
   db_data:

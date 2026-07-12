@@ -3,8 +3,6 @@
 CONTAINER_NAME="app"
 
 if [ $(docker ps -q -f name=$CONTAINER_NAME) ]; then
-  docker exec "$CONTAINER_NAME" "$@"
-
   case "$1" in
     art)
         shift

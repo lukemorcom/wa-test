@@ -1,5 +1,8 @@
 # Csv Service
 
+[![Laravel CI](https://github.com/lukemorcom/wa-test/actions/workflows/laravel.yml/badge.svg)](https://github.com/lukemorcom/wa-test/actions/workflows/laravel.yml)
+
+
 ## Local architecture
 
 Uses Docker Compose to provide lightweight local environment.
@@ -16,3 +19,4 @@ Uses Docker Compose to provide lightweight local environment.
 - Copy the .env: `cp .env.example .env`
 - Bring up the containers: `docker compose up -d`
 - Migrate the database: `rudder art migrate`
+- Run the tests: `rudder art test`

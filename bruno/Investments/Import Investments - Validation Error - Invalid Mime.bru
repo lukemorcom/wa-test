@@ -1,0 +1,21 @@
+meta {
+  name: Import Investments - Validation Error - Invalid Mime
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/api/investments/import
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  file: @file(Investments/invalid-document.pdf)
+}
+
+assert {
+  res.status: eq 422
+  res.body.message: eq The file field must be a file of type: csv, txt.
+  res.body.errors.file: contains The file field must be a file of type: csv, txt.
+}

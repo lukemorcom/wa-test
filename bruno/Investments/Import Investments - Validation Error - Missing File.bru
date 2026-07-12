@@ -1,0 +1,17 @@
+meta {
+  name: Import Investments - Validation Error - Missing File
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/investments/import
+  body: multipartForm
+  auth: none
+}
+
+assert {
+  res.status: eq 422
+  res.body.message: eq The file field is required.
+  res.body.errors.file: contains The file field is required.
+}

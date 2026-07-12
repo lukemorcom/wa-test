@@ -1,0 +1,21 @@
+meta {
+  name: Import Investments - Success
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/api/investments/import
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  file: @file(Investments/sample-investments.csv)
+}
+
+assert {
+  res.status: eq 202
+  res.body.message: eq CSV Accepted for processing.
+  res.body.file_path: isDefined
+}

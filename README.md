@@ -21,7 +21,13 @@ Uses Docker Compose to provide lightweight local environment.
 - Install dependencies: `rudder composer install`
 - Migrate the database: `rudder art migrate`
 - Run the tests: `rudder art test`
-- Perform some requests as detailed in the API docs
+- Send a csv for processing! You can import the Bruno collection mentioned below, or just run this cURL from `/bruno/Investments`:
+
+``` bash
+curl -X POST http://localhost:8000/api/investments/import \
+-F "file=@sample-investments.csv" \
+-H "Accept: application/json"
+```
 
 
 ## API Documentation

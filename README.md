@@ -9,7 +9,7 @@ Uses Docker Compose to provide lightweight local environment.
 
 - `app` - php container, entry point is `artisan serve` which is just for local
 - `queue` - shares an image (and locally, a volume mapping) with `app`. Executes async jobs
-- `redis` - cache and stores queued jobs
+- `redis` - application cache, stores queued jobs
 
 
 ## Local setup
@@ -18,5 +18,17 @@ Uses Docker Compose to provide lightweight local environment.
 - 'Install' the rudder helper: `cp rudder /usr/local/bin/rudder`
 - Copy the .env: `cp .env.example .env`
 - Bring up the containers: `docker compose up -d`
+- Install dependencies: `rudder composer install`
 - Migrate the database: `rudder art migrate`
 - Run the tests: `rudder art test`
+- Perform some requests as detailed in the API docs
+
+
+## API Documentation
+
+This project utilises Bruno for API docs.
+
+The collection is saved in the `/bruno` directory. It contains:
+- Configured environment for `Local` (`http://localhost:8000`)
+- Automated assertions
+- Testing assets

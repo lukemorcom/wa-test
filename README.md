@@ -16,11 +16,14 @@ Uses Docker Compose to provide lightweight local environment.
 
 - Clone the repository and cd to the root
 - 'Install' the rudder helper: `cp rudder /usr/local/bin/rudder`
-- Copy the .env: `cp .env.example .env`
+- Copy the Laravel .env: `cp laravel/.env.example laravel/.env`
 - Bring up the containers: `docker compose up -d`
 - Install dependencies: `rudder composer install`
+- Set the application key: `rudder art key:generate`
 - Migrate the database: `rudder art migrate`
 - Run the tests: `rudder art test`
+- Run the built in Laravel development server: `rudder art serve --host=0.0.0.0 --port=8000`
+- Run the queue worker: `docker exec php artisan queue:work` 
 - Send a csv for processing! You can import the Bruno collection mentioned below, or just run this cURL from `/bruno/Investments`:
 
 ``` bash

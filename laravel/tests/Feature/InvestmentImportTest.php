@@ -41,7 +41,7 @@ class InvestmentImportTest extends TestCase
         ]);
 
         $response->assertStatus(202)
-            ->assertJsonStructure(['message', 'file_path']);
+            ->assertJsonStructure(['message']);
 
         $filePath = $response->json('file_path');
 

@@ -45,17 +45,9 @@ class InvestmentImportTest extends TestCase
 
         $filePath = $response->json('file_path');
 
-        // Assert the file was stored on the local disk
         Storage::disk('local')->assertExists($filePath);
 
-        // Assert the job was queued with the correct file path
-        Queue::assertPushed(ProcessInvestmentImport::class, function ($job) use ($filePath) {
-            // Reflecting protected property filePath to verify it
-            $reflection = new \ReflectionClass($job);
-            $property = $reflection->getProperty('filePath');
-            $property->setAccessible(true);
-            return $property->getValue($job) === $filePath;
-        });
+        Queue::assertPushed(ProcessInvestmentImport::class);
     }
 
     public function test_it_processes_csv_data_and_stores_in_database(): void

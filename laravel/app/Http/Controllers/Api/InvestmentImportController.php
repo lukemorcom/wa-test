@@ -23,7 +23,6 @@ class InvestmentImportController extends Controller
         return response()->json([
             // sometimes might be helpful to return a queue_id so consumer can check status of their batch etc
             'message' => 'CSV Accepted for processing.',
-            'file_path' => $path,
         ], 202);
     }
 }
